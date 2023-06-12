@@ -1,0 +1,11 @@
+@startuml
+
+actor UtenteCorriere
+
+
+Corriere -> corriere: updateStato()
+corriere -> spedizione: getCodiceQR()
+corriere -> spedizione: updateStato(nuovoStato)
+spedizione -> spedizione: updateCodiceQR()
+
+@enduml

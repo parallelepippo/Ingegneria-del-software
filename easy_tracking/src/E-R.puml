@@ -1,0 +1,69 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class SpedizioneFactory {
+StrategiaSpedizione createSpedizione(String tipoSpedizione)
+}
+class Spedizione {
+Cliente mittente
+Cliente destinatario
+Magazzino
+Corriere
+Dataspedizione
+Dataconsegna
+Stato
+CodiceQR
+PesoPacco
+Prezzo
+Spedizione creaSpedizione(Integer trackingCode, Cliente mittente, Cliente destinatario, double peso, String tipoSpedizione, Date dataSpedizione)
+}
+interface StrategiaSpedizione {
+double calcolaPrezzo(Spedizione spedizione)
+Date calcolaDataConsegna(Spedizione spedizione)
+}
+class Corriere {
+id
+nome
+cognome
+cap
+updateStato(Spedizione spedizione)
+}
+class Magazzino {
+id
+comune
+cap
+indirizzo
+pacchiingiacenza
+capienzapacchi
+updateGiacenza(Spedizione stato)
+}
+class Cliente {
+id
+nome
+cognome
+cap
+comune
+indirizzo
+telefono
+email
+codicefiscale
+}
+class Utente {
+username
+password
+ruolo [Admin, Corriere, Cliente]
+}
+
+Utente -|> Spedizione
+Spedizione -|> SpedizioneFactory
+SpedizioneFactory --|> StrategiaSpedizione
+StrategiaSpedizione -|> Spedizione
+Spedizione <|-- Cliente
+Spedizione <|-- Magazzino
+Spedizione <|-- Corriere
+
+
+
+
+
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor Utente
+actor Cliente
+
+Cliente -> Utente: Richiede Creazione Spedizione
+Utente -> Cliente: Richiede parametri: trackingCode, mittente, destinatario, peso, tipoSpedizione, dataSpedizione
+Utente -> Spedizione: creaSpedizione(parametri)
+Spedizione -> SpedizioneFactory: setStrategiaSpedizione
+SpedizioneFactory -> Spedizione : setPrezzo(strategiaSpedizione), setDataconsegna(strategiaSpedizione)
+
+@enduml
